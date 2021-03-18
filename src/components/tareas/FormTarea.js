@@ -1,11 +1,41 @@
-import React, { useContext }  from 'react';
+import React, { useContext, useState, useEffect }  from 'react';
 
 import proyectoContext from '../../context/proyectos/proyectoContext';
+import tareaContext from '../../context/tareas/tareaContex';
 
 export const FormTarea = () => {
 
     const proyectosContext = useContext(proyectoContext);
     const { proyecto } = proyectosContext;
+
+    const tareasContext = useContext(tareaContext);
+
+    const { 
+        tareaHasError, 
+        tareaSeleccionada, 
+        agregarTarea, 
+        validarTarea, 
+        obtenerTareas, 
+        actualizarTarea,
+        limpiarTarea
+    } = tareasContext;
+
+    const [ tarea, setTarea ] = useState({
+        nombre: ''
+    });
+
+    useEffect(() => {
+        if (tareaSeleccionada !== null) {
+            setTarea(tareaSeleccionada)
+        } else {
+            setTarea({
+                nombre: ''
+            })
+        }
+
+    }, [tareaSeleccionada]);
+
+    const { nombre } = tarea
 
     if(!proyecto) return null;
 
@@ -13,11 +43,44 @@ export const FormTarea = () => {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
+
+        // Validcion
+        if (nombre.trim() === '') {
+            validarTarea();
+            return;
+        }
+
+        // Nueva Tarea o Edicion?
+        if (tareaSeleccionada === null) {
+            tarea.proyectoId = proyectoActual.id;
+            tarea.estado = false;
+            agregarTarea(tarea);
+        } else {
+            actualizarTarea(tarea);
+            limpiarTarea();
+        }
+
         
+
+        obtenerTareas(proyectoActual.id);
+
+        // Reinicia formulario
+        setTarea({
+            nombre: ''
+        });
+
+    };
+
+    const handleOnChange = (e) => {
+        setTarea({
+            ...tarea,
+            [e.target.name]: e.target.value
+        })
     };
 
     return (
         <div className="formulario">
+
             <form
                 onSubmit={handleOnSubmit}
             >
@@ -26,7 +89,9 @@ export const FormTarea = () => {
                         type="text" 
                         className="input-text"
                         placeholder="Descripcion de la tarea..."
-                        value=""
+                        name="nombre"
+                        value={nombre}
+                        onChange={handleOnChange}
                     />
                 </div>
 
@@ -34,10 +99,15 @@ export const FormTarea = () => {
                     <input 
                         type="submit" 
                         className="btn btn-primario btn-block btn-submit"
-                        value="Agregar Tarea"
+                        value={ tareaSeleccionada ? "Editar Tarea" : "Agregar Tarea"}
                     />
                 </div>
             </form>
+
+            {
+                tareaHasError ? <p className="mensaje error">El nombre de la tarea es obligatorio</p> : null
+            }
+
         </div>
     )
 }
