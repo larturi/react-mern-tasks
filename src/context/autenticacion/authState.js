@@ -4,6 +4,8 @@ import AuthContext from './authContext';
 import AuthReducer from './authReducer';
 
 import clienteAxios from '../../config/axios';
+import tokenAuth from '../../config/tokenAuth';
+
 
 import { 
     REGISTRO_OK,
@@ -34,6 +36,8 @@ const AuthState = props => {
                 type: REGISTRO_OK,
                 payload: respuesta.data
             });
+            
+            usuarioAutenticado();
 
         } catch (error) {
             const alerta = {
@@ -47,6 +51,46 @@ const AuthState = props => {
         }
     };
 
+    // Retorna el usuario autenticado
+    const usuarioAutenticado = async () => {
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            // Paso el token al backend para validar la sesion
+            tokenAuth(token);
+        }
+
+        try {
+            const respuesta = await clienteAxios.get('/api/auth');
+            dispatch({
+                type: OBTENER_USUARIO,
+                payload: respuesta.data.usuario
+            });
+        } catch (error) {
+           dispatch({
+               type: LOGIN_ERROR
+           });
+        }
+    };
+
+    // Cuando el usuario inicia sesion
+    const iniciarSesion = async (datos) => {
+        try {
+            const respuesta = await clienteAxios.post('/api/auth', datos);
+            console.log(respuesta);
+        } catch (error) {
+            console.log(error.response.data.msg);
+            const alerta = {
+                msg: error.response.data.msg,
+                categoria: 'alerta-error'
+            };
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: alerta
+            });
+        }
+    }
+
     return (
         <AuthContext.Provider
             value={{
@@ -54,12 +98,13 @@ const AuthState = props => {
                 isAuthenticated: state.isAuthenticated,
                 user: state.user,
                 msg: state.msg,
-                registrarUsuario
+                registrarUsuario,
+                iniciarSesion
             }}
         >
             { props.children }
         </AuthContext.Provider>
-    )
+    );
 
 };
 

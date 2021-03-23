@@ -1,16 +1,29 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import AlertaContext from '../../context/alertas/alertaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
-export const NuevaCuenta = () => {
+export const NuevaCuenta = ( props ) => {
 
     const alertaContext = useContext(AlertaContext);
     const { alerta, mostrarAlerta } = alertaContext;
 
     const authContext = useContext(AuthContext);
-    const { registrarUsuario } = authContext;
+    const { msg, isAuthenticated, registrarUsuario } = authContext;
+
+    // En caso que se haya autenticado o registrado
+    useEffect(() => {
+
+        if (isAuthenticated) {
+            props.history.push('/proyectos');
+        }
+
+        if (msg) {
+            mostrarAlerta(msg.msg, msg.categoria);
+        }
+        
+    }, [msg, isAuthenticated, props.history, mostrarAlerta]);
 
     const [ usuario, setUsuario ] = useState({
         nombre: '',
