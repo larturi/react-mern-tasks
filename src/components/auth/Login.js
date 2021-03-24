@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import AlertaContext from '../../context/alertas/alertaContext';
 import AuthContext from '../../context/autenticacion/authContext';
 
-export const Login = () => {
+export const Login = ( props ) => {
 
     const alertaContext = useContext(AlertaContext);
     const { alerta, mostrarAlerta } = alertaContext;
@@ -12,6 +12,18 @@ export const Login = () => {
     const authContext = useContext(AuthContext);
     const { msg, isAuthenticated, iniciarSesion } = authContext;
 
+    useEffect(() => {
+
+        if (isAuthenticated) {
+            props.history.push('/proyectos');
+        }
+
+        if (msg) {
+            mostrarAlerta(msg.msg, msg.categoria);
+        }
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [msg, isAuthenticated, props.history]);
 
     const [ usuario, setUsuario ] = useState({
         email: '',

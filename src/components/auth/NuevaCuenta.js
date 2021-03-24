@@ -23,7 +23,8 @@ export const NuevaCuenta = ( props ) => {
             mostrarAlerta(msg.msg, msg.categoria);
         }
         
-    }, [msg, isAuthenticated, props.history, mostrarAlerta]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [msg, isAuthenticated, props.history]);
 
     const [ usuario, setUsuario ] = useState({
         nombre: '',

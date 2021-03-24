@@ -5,6 +5,8 @@ import tareaContext from '../../context/tareas/tareaContex';
 
 export const Proyecto = ({ proyecto }) => {
 
+    console.log(proyecto);
+
     const proyectosContext = useContext(proyectoContext);
     const { proyectoActual } = proyectosContext;
 
@@ -20,8 +22,8 @@ export const Proyecto = ({ proyecto }) => {
         <li>
             <button
                 type="button"
-                className="btn btn-blank"
-                onClick={ () => seleccionarProyecto(proyecto.id) }
+                className="btn btn-proyecto"
+                onClick={ () => seleccionarProyecto(proyecto._id) }
             >
                 { proyecto.nombre }
             </button>

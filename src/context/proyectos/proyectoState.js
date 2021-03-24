@@ -1,9 +1,9 @@
 import React, {useReducer} from 'react';
 
-import uuid from 'uuid';
-
 import proyectoContext from './proyectoContext';
 import proyectoReducer from './proyectoReducer';
+
+import clienteAxios from '../../config/axios';
 
 import { 
     FORMULARIO_PROYECTO,
@@ -16,14 +16,6 @@ import {
 
 
 const ProyectoState = props => {
-
-    const proyectos = [
-        { id: 1, nombre: 'WitWorks' },
-        { id: 2, nombre: 'MyBudget' },
-        { id: 3, nombre: 'Portfolio' },
-        { id: 4, nombre: 'Seguridad' },
-        { id: 5, nombre: 'Sociales' },
-    ];
 
     const initialState = {
         proyectos: [],
@@ -40,19 +32,29 @@ const ProyectoState = props => {
         });
     };
 
-    const obtenerProyectos = () => {
+    const obtenerProyectos = async () => {
+      try {
+          const resultado = await clienteAxios.get('/api/proyectos');
         dispatch({
             type: OBTENER_PROYECTOS,
-            payload: proyectos
-        })
+            payload: resultado.data
+        });
+      } catch (error) {
+          console.error(error);
+      }
     };
 
-    const agregarProyecto = (proyecto) => {
-        proyecto.id = uuid.v4();
-        dispatch({
-            type: AGREGAR_PROYECTO,
-            payload: proyecto
-        })
+    const agregarProyecto = async (proyecto) => {
+
+        try {
+            const resultado = await clienteAxios.post('/api/proyectos', proyecto);
+            dispatch({
+                type: AGREGAR_PROYECTO,
+                payload: resultado.data
+            });
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const mostrarError = () => {
