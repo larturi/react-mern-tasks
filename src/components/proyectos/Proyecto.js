@@ -5,8 +5,6 @@ import tareaContext from '../../context/tareas/tareaContex';
 
 export const Proyecto = ({ proyecto }) => {
 
-    console.log(proyecto);
-
     const proyectosContext = useContext(proyectoContext);
     const { proyectoActual } = proyectosContext;
 

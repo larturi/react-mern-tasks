@@ -2,23 +2,36 @@ import React, { useContext, useEffect } from 'react';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import proyectoContext from '../../context/proyectos/proyectoContext';
+import AlertaContext from '../../context/alertas/alertaContext';
+import ProyectoContext from '../../context/proyectos/proyectoContext';
+
 import { Proyecto } from './Proyecto';
 
 export const ListadoProyectos = () => {
 
-    const proyectosContext = useContext(proyectoContext);
-    const { proyectos, obtenerProyectos } = proyectosContext;
+    const proyectosContext = useContext(ProyectoContext);
+    const { msg, proyectos, obtenerProyectos } = proyectosContext;
+
+    const alertaContext = useContext(AlertaContext);
+    const { alerta, mostrarAlerta } = alertaContext;
 
     useEffect(() => {
+        if (msg) {
+            mostrarAlerta(msg.msg, msg.categoria)
+        }
+
         obtenerProyectos();
         // eslint-disable-next-line
-    }, []);
+    }, [msg]);
 
     if (proyectos.length === 0) return <p>No hay proyectos, comienza creando uno nuevo</p>;
 
     return (
+
         <ul className="listado-proyectos">
+
+            { alerta ? ( <div className={`alerta ${alerta.categoria}`}>{ alerta.msg }</div> ) : null }
+
             <TransitionGroup>
             {
                 proyectos.map( proyecto => (
@@ -35,5 +48,6 @@ export const ListadoProyectos = () => {
             }
             </TransitionGroup>
         </ul>
+
     )
 }

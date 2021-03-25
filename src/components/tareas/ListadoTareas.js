@@ -3,6 +3,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import proyectoContext from '../../context/proyectos/proyectoContext';
 import tareaContext from '../../context/tareas/tareaContex';
+import { TAREAS_PROYECTO } from '../../types';
 
 import { Tarea } from './Tarea';
 
@@ -19,7 +20,7 @@ export const ListadoTareas = () => {
     const [ proyectoActual ] = proyecto;
 
     const handleOnClickDelete = () => {
-        eliminarProyecto(proyectoActual.id);
+        eliminarProyecto(proyectoActual._id);
     };
 
     return (
@@ -28,7 +29,7 @@ export const ListadoTareas = () => {
 
             <ul className="listado-tareas">
                 {
-                    (tareasProyecto.length === 0) 
+                    (tareasProyecto?.length === 0) 
                     ? ( <li className="tarea"><p>No hay tareas</p></li> )
                     : 
                     <TransitionGroup>

@@ -5,7 +5,8 @@ import {
     AGREGAR_PROYECTO,
     VALIDAR_FORMULARIO,
     PROYECTO_ACTUAL,
-    ELIMINAR_PROYECTO
+    ELIMINAR_PROYECTO,
+    PROYECTO_ERROR
  } from '../../types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -20,7 +21,6 @@ export default (state, action) => {
             }
 
         case OBTENER_PROYECTOS:
-            console.log(action.payload);
             return {
                 ...state,
                 proyectos: action.payload
@@ -49,8 +49,14 @@ export default (state, action) => {
         case ELIMINAR_PROYECTO:
             return {
                 ...state,
-                proyectos: state.proyectos.filter(proyecto => proyecto.id !== action.payload),
+                proyectos: state.proyectos.filter(proyecto => proyecto._id !== action.payload),
                 proyecto: null
+            }
+        
+        case PROYECTO_ERROR:
+            return {
+                ...state,
+                msg: action.payload
             }
 
         default:
