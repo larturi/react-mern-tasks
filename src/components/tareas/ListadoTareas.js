@@ -3,7 +3,6 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import proyectoContext from '../../context/proyectos/proyectoContext';
 import tareaContext from '../../context/tareas/tareaContex';
-import { TAREAS_PROYECTO } from '../../types';
 
 import { Tarea } from './Tarea';
 
@@ -36,7 +35,7 @@ export const ListadoTareas = () => {
                         {
                             tareasProyecto.map(tarea => (
                                 <CSSTransition
-                                 key={tarea.id}
+                                 key={tarea._id}
                                  timeout={200}
                                  classNames="tarea"
                                 >

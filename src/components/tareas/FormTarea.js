@@ -59,9 +59,7 @@ export const FormTarea = () => {
             limpiarTarea();
         }
 
-        
-
-        obtenerTareas(proyectoActual.id);
+        obtenerTareas(proyectoActual._id);
 
         // Reinicia formulario
         setTarea({

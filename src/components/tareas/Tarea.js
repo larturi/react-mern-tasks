@@ -9,7 +9,7 @@ export const Tarea = ({ tarea }) => {
     const { proyecto } = proyectosContext;
 
     const tareasContext = useContext(tareaContext);
-    const { eliminarTarea, obtenerTareas, cambiarEstadoTarea, setTareaActual } = tareasContext;
+    const { eliminarTarea, obtenerTareas, actualizarTarea, setTareaActual } = tareasContext;
 
     const [ proyectoActual ] = proyecto;
 
@@ -19,13 +19,14 @@ export const Tarea = ({ tarea }) => {
     };
 
     const handleCambiarEstado = (tarea) => {
-        if (tarea.estado) {
-            tarea.estado = false;
+
+        if (tarea.completa) {
+            tarea.completa = false;
         } else {
-            tarea.estado = true;
+            tarea.completa = true;
         }
 
-        cambiarEstadoTarea(tarea);
+        actualizarTarea(tarea);
     };
 
     const seleccionarTarea = (tarea) => {
@@ -38,7 +39,7 @@ export const Tarea = ({ tarea }) => {
 
             <div className="estado">
                 {
-                    tarea.estado ?
+                    tarea.completa ?
                     (<button 
                         type="button" 
                         className="completo"
