@@ -1,5 +1,5 @@
 <h1 align="center">
-  MERN Tasks
+  MERN Tasks (Client)
 </h1>
 
 <h3 align="center">
