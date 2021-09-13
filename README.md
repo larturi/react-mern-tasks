@@ -1,14 +1,6 @@
-<h1 align="center">
-  MERN Tasks (Client)
-</h1>
+# MERN Tasks (Client)
 
-<h3 align="center">
-  -- React, Node and Mongo --
-</h3>
-
-<h5 align="center">
-  Made with ❤️ by Leandro Arturi
-</h5>
+### React, Node and Mongo
 
 ## 🚀 Quick start
 
@@ -23,6 +15,9 @@ npm run dev
 ```shell
 npm run build 
 ```
+
+##### Made with ❤️ by Leandro Arturi
+
 
 
 
