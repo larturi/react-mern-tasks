@@ -20,3 +20,11 @@ Start in development mode
 npm run dev 
 ```
 
+**Prod**
+
+```shell
+npm run build 
+```
+
+
+
