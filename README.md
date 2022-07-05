@@ -1,23 +1,19 @@
 # MERN Tasks (Client)
 
-### React, Node and Mongo
+## React, Node and Mongo
 
-## 🚀 Quick start
+### 🚀 Quick start
 
-Start in development mode
+#### Instalar dependencias
 
-```shell
-npm run dev 
+```bash
+npm install
 ```
 
-**Prod**
+#### Start in development mode
 
 ```shell
-npm run build 
+npm start 
 ```
 
 ##### Made with ❤️ by Leandro Arturi
-
-
-
-
