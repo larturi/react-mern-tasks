@@ -75,19 +75,21 @@ export const NuevaCuenta = ( props ) => {
     return (
         <div className="form-usuario">
             {
-                alerta ? ( <div className={`alerta ${ alerta.categoria }`}>{ alerta.msg }</div> ) : null
+                alerta ? ( <div data-cy="alerta" className={`alerta ${ alerta.categoria }`}>{ alerta.msg }</div> ) : null
             }
             <div className="contenedor-form sombra-dark">
-                <h1>Obtener una Cuenta</h1>
+                <h1 data-cy="titulo">Obtener una Cuenta</h1>
 
                 <form
                     onSubmit={handleOnSubmit}
+                    data-cy="nueva-cuenta"
                 >
 
                     <div className="campo-form">
                         <label htmlFor="email">Nombre</label>
                         <input 
                             type="text"
+                            data-cy="nombre"
                             id="nombre"
                             name="nombre"
                             placeholder="Tu nombre"
@@ -100,6 +102,7 @@ export const NuevaCuenta = ( props ) => {
                         <label htmlFor="email">Email</label>
                         <input 
                             type="email"
+                            data-cy="email"
                             id="email"
                             name="email"
                             placeholder="Tu email"
@@ -112,6 +115,7 @@ export const NuevaCuenta = ( props ) => {
                         <label htmlFor="password">Password</label>
                         <input 
                             type="password"
+                            data-cy="password"
                             id="password"
                             name="password"
                             placeholder="Tu password"
@@ -124,6 +128,7 @@ export const NuevaCuenta = ( props ) => {
                         <label htmlFor="confirmar">Confirmar Password</label>
                         <input 
                             type="password"
+                            data-cy="confirmar"
                             id="confirmar"
                             name="confirmar"
                             placeholder="Confirmar password"
@@ -135,13 +140,14 @@ export const NuevaCuenta = ( props ) => {
                     <div className="campo-form">
                         <input 
                             type="submit"
+                            data-cy="submit-nueva-cuenta"
                             className="btn btn-primario btn-block"
                             value="Registrarme"
                         />
                     </div>
                 </form>
 
-                <Link to={'/'} className="enlace-cuenta">
+                <Link to={'/'} className="enlace-cuenta" data-cy="iniciar-sesion">
                     Iniciar Sesión 
                 </Link>
             </div>

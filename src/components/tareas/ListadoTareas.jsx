@@ -14,7 +14,7 @@ export const ListadoTareas = () => {
     const tareasContext = useContext(tareaContext);
     const { tareasProyecto } = tareasContext;
 
-    if(!proyecto) return <h2>Selecciona un proyecto</h2>;
+    if(!proyecto) return <h2 data-cy="seleccionaProyecto">Selecciona un proyecto</h2>;
 
     const [ proyectoActual ] = proyecto;
 
