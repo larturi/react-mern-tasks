@@ -27,7 +27,7 @@ npx cypress open
 #### Correr todas las pruebas por consola
 
 ```shell
-npx cypress run --headed --browser chrome
+npx cypress run
 ```
 
 ##### Made with ❤️ by Leandro Arturi
