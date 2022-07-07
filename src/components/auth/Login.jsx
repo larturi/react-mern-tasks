@@ -61,6 +61,7 @@ export const Login = ( props ) => {
 
                 <form
                     onSubmit={handleOnSubmit}
+                    data-cy="form-login"
                 >
                     <div className="campo-form">
                         <label htmlFor="email">Email</label>
@@ -71,6 +72,7 @@ export const Login = ( props ) => {
                             placeholder="Tu email"
                             value={email}
                             onChange={handleOnChange}
+                            data-cy="email"
                         />
                     </div>
 
@@ -83,6 +85,7 @@ export const Login = ( props ) => {
                             placeholder="Tu password"
                             value={password}
                             onChange={handleOnChange}
+                            data-cy="password"
                         />
                     </div>
 
@@ -91,11 +94,12 @@ export const Login = ( props ) => {
                             type="submit"
                             className="btn btn-primario btn-block"
                             value="Iniciar Sesión"
+                            data-cy="submit"
                         />
                     </div>
                 </form>
 
-                <Link to={'/nueva-cuenta'} className="enlace-cuenta">
+                <Link to={'/nueva-cuenta'} className="enlace-cuenta" data-cy="nueva-cuenta">
                     Obtener Cuenta
                 </Link>
             </div>

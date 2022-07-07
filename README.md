@@ -16,4 +16,12 @@ npm install
 npm start 
 ```
 
+### Pruebas
+
+#### Correr pruebas con cypress
+
+```shell
+npx cypress open
+```
+
 ##### Made with ❤️ by Leandro Arturi
