@@ -16,12 +16,18 @@ npm install
 npm start 
 ```
 
-### Pruebas
+### Pruebas con Cypress
 
-#### Correr pruebas con cypress
+#### Correr pruebas por spec
 
 ```shell
 npx cypress open
+```
+
+#### Correr todas las pruebas por consola
+
+```shell
+npx cypress run --headed --browser chrome
 ```
 
 ##### Made with ❤️ by Leandro Arturi

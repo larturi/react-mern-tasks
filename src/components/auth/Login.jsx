@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import AlertaContext from '../../context/alertas/alertaContext';
 import AuthContext from '../../context/autenticacion/authContext';
+import Alerta from '../layout/Alerta';
 
 export const Login = ( props ) => {
 
@@ -52,9 +53,7 @@ export const Login = ( props ) => {
     return (
         <div className="form-usuario">
 
-            {
-                alerta ? ( <div className={`alerta ${ alerta.categoria }`}>{ alerta.msg }</div> ) : null
-            }
+            <Alerta alerta={alerta} />
 
             <div className="contenedor-form sombra-dark">
                 <h1 data-cy="titulo">Iniciar Sesión</h1>

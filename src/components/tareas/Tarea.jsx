@@ -34,14 +34,15 @@ export const Tarea = ({ tarea }) => {
     };
 
     return (
-        <li className="tarea sombra">
+        <li data-cy="tarea" className="tarea sombra" key={tarea.id}>
             <p>{ tarea.nombre }</p>
 
             <div className="estado">
                 {
                     tarea.completa ?
                     (<button 
-                        type="button" 
+                        type="button"
+                        data-cy="tarea-completa"
                         className="completo"
                         onClick={() => handleCambiarEstado(tarea)}
                     >
@@ -49,7 +50,8 @@ export const Tarea = ({ tarea }) => {
                     </button>) :
 
                     (<button 
-                        type="button" 
+                        type="button"
+                        data-cy="tarea-incompleta"
                         className="incompleto"
                         onClick={() => handleCambiarEstado(tarea)}
                     >
@@ -60,7 +62,8 @@ export const Tarea = ({ tarea }) => {
 
             <div className="acciones">
                 <button 
-                    type="button" 
+                    type="button"
+                    data-cy="btn-editar"
                     className="btn btn-primario"
                     onClick={ () => seleccionarTarea(tarea) }
                 >
@@ -68,7 +71,8 @@ export const Tarea = ({ tarea }) => {
                 </button>
 
                 <button 
-                    type="button" 
+                    type="button"
+                    data-cy="btn-eliminar"
                     className="btn btn-secundario"
                     onClick={ () => handleEliminarTarea(tarea._id) }
                 >

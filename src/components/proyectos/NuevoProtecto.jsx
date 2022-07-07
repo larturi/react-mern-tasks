@@ -42,6 +42,7 @@ export const NuevoProtecto = () => {
         <>
             <button
                 type="button"
+                data-cy="boton-nuevo-proyecto"
                 className="btn btn-block btn-primario"
                 onClick={ handleOnClick }
             >
@@ -57,6 +58,7 @@ export const NuevoProtecto = () => {
                     >
                         <input 
                             type="text" 
+                            data-cy="input-nuevo-proyecto"
                             className="input-text"
                             placeholder="Nombre del Proyecto"
                             name="nombre"
@@ -65,7 +67,8 @@ export const NuevoProtecto = () => {
                         />
 
                         <input 
-                            type="submit" 
+                            type="submit"
+                            data-cy="submit-nuevo-proyecto"
                             className="btn btn-primario btn-block"
                             value="Agregar Proyecto"
                         />
@@ -73,7 +76,7 @@ export const NuevoProtecto = () => {
                     </form>
                 ) : null }
 
-                { formularioHasError ? <p className="mensaje error">El nombre del Proyecto es obligatorio</p> : null }
+                { formularioHasError ? <p data-cy="alerta" className="mensaje error">El nombre del proyecto es obligatorio</p> : null }
         </>
     )
 }
