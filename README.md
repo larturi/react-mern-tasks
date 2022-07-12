@@ -7,13 +7,13 @@
 #### Instalar dependencias
 
 ```bash
-npm install
+yarn
 ```
 
 #### Start in development mode
 
 ```shell
-npm start 
+yarn start 
 ```
 
 ### Pruebas con Cypress
