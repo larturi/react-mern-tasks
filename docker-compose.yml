@@ -3,16 +3,15 @@ version: '3'
 services:
    api:
       image: mern-tasks-backend:latest
+      container_name: mern-tasks-backend
       ports:
          - '4004:4004'
       networks:
          - mern-tasks-network
-      depends_on:
-         - entriesdb
-      command: ['./wait-for-it.sh', 'entriesdb:27018', '--', 'npm', 'start']
 
    react:
       image: mern-tasks-frontend:latest
+      container_name: mern-tasks-frontend
       ports:
          - '8081:80'
       networks:
