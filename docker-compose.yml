@@ -15,5 +15,15 @@ services:
       networks:
          - mern-tasks-network
 
+   entriesdb:
+      image: mongo:5.0.0
+      container_name: merntasksdb
+      ports:
+         - 27018:27017
+      volumes:
+         - ./mongo:/data/db
+      networks:
+         - mern-tasks-network
+
 networks:
    mern-tasks-network:
