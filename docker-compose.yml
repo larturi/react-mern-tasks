@@ -7,6 +7,9 @@ services:
          - '4004:4004'
       networks:
          - mern-tasks-network
+      depends_on:
+         - entriesdb
+      command: ['./wait-for-it.sh', 'entriesdb:27018', '--', 'npm', 'start']
 
    react:
       image: mern-tasks-frontend:latest
@@ -14,12 +17,14 @@ services:
          - '8081:80'
       networks:
          - mern-tasks-network
+      depends_on:
+         - api
 
    entriesdb:
       image: mongo:5.0.0
-      container_name: merntasksdb
+      container_name: mern-tasks-mongodb
       ports:
-         - 27018:27017
+         - '27018:27017'
       volumes:
          - ./mongo:/data/db
       networks:
