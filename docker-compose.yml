@@ -2,18 +2,18 @@ version: '3'
 
 services:
    api:
-      image: calendar-app-backend:latest
+      image: mern-tasks-backend:latest
       ports:
-         - '4003:4003'
+         - '4004:4004'
       networks:
-         - calendar-app-network
+         - mern-tasks-network
 
    react:
-      image: calendar-app-frontend:latest
+      image: mern-tasks-frontend:latest
       ports:
-         - '8080:80'
+         - '8081:80'
       networks:
-         - calendar-app-network
+         - mern-tasks-network
 
 networks:
-   calendar-app-network:
+   mern-tasks-network:
