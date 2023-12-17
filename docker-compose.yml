@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-   api:
+   backend:
       image: mern-tasks-backend:latest
       container_name: mern-tasks-backend
       ports:
@@ -9,15 +9,13 @@ services:
       networks:
          - mern-tasks-network
 
-   react:
+   frontend:
       image: mern-tasks-frontend:latest
       container_name: mern-tasks-frontend
       ports:
          - '8081:80'
       networks:
          - mern-tasks-network
-      depends_on:
-         - api
 
    entriesdb:
       image: mongo:5.0.0
