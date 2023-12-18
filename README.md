@@ -33,7 +33,7 @@ npx cypress run --browser chrome
 ### Docker
 
 ```bash
-docker build -t mern-tasks-frontend:latest .
+docker build --build-arg REACT_APP_BACKEND_URL=http://mern-tasks.cloudapp.com.ar:4004 -t mern-tasks-frontend:latest .
 
 docker-compose up -d
 ```
